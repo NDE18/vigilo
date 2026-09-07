@@ -1,0 +1,27 @@
+apiVersion: vigilo.io/v1alpha1
+terms: []
+kind: VigiloPolicy
+metadata:
+  name: payment-production-guardrails
+spec:
+  selector:
+    namespaces:
+      - payments-prod
+
+  pricingRef:
+    name: aws-eu-west-3-reference
+
+  rules:
+    requireRequests: true
+    requireLimits: false
+
+    maxPerPod:
+      cpu: 2
+      memory: 4Gi
+    
+    replicas:
+      max: 5
+
+    monthlyBudget:
+      amount: 500
+      currency: USD

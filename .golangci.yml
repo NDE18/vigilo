@@ -1,0 +1,44 @@
+version: "2"
+
+run:
+  timeout: 1m
+  tests: true
+
+linters:
+  default: standard
+
+  enable:
+    - errcheck
+    - errorlint
+    - gocritic
+    - gosec
+    - nilerr
+    - predeclared
+    - revive
+    - testifylint
+    - unconvert
+    - unparam
+    - usetesting
+    - misspell
+
+  settings:
+    misspell:
+      locale: US
+
+    revive:
+      rules:
+        - name: exported
+          disabled: true
+
+    testifylint:
+      enable-all: true
+
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0
+  
+formatters:
+  enable:
+    - gofmt
+    - goimports
+

@@ -1,0 +1,82 @@
+# Go binaries and build artifacts
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+/bin/
+/vigilo
+/vigilo.exe
+
+# Test coverage and profiling
+coverage.out
+coverage-*.out
+coverage.html
+*.prof
+*.pprof
+*.trace
+
+# Go workspace and local environment
+go.work
+go.work.sum
+.env
+.env.*
+!.env.example
+
+# GoReleaser
+/dist/
+.goreleaser/
+
+# GolangCI-Lint project-local cache
+.golangci-cache/
+
+# IDEs and editors
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+.idea/
+*.iml
+.vs/
+*.swp
+*.swo
+*~
+*#
+.#*
+
+# Operating systems
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Local Kubernetes and Helm development artifacts
+kubeconfig
+kubeconfig.*
+*.kubeconfig
+kind-logs/
+kind-export/
+*.tgz
+charts/*.tgz
+
+# Local secrets and private key material
+*.pem
+*.key
+*.p12
+*.pfx
+secrets.txt
+secrets.yaml
+secrets.yml
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+.cache/

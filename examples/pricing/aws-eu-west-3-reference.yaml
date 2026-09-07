@@ -1,0 +1,17 @@
+apiVersion: vigilo.io/v1alpha1
+kind: PricingCatalog
+metadata:
+  name: aws-eu-west-3-reference
+spec:
+  currency: USD
+  hoursPerMonth: 730
+
+  cpuPerCoreHour: 0.041
+  memoryPerGBHour: 0.005
+
+  metadata:
+    provider: aws
+    region: eu-west-3
+    effectiveDate: 2026-08-01
+    source: "Illustrative Vigilo reference rates"
+    
