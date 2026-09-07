@@ -8,6 +8,10 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Status](https://img.shields.io/badge/Status-Early%20Development-orange)]()
 
+<p align="center">
+  <img src="assets/crecerelle.png" alt="Crécerelle" width="400">
+</p>
+
 Vigilo is an open-source policy engine that brings **cost awarenes** into the Kubernetes development workflow.
 
 Vigilo's first cost model produces a request-based monthly estimate from declared CPU, memory, replica count, and an explicit pricing catalog. It is a governance estimate, not a cloud invoice forecast.
