@@ -7,12 +7,13 @@
 **GitOps-Native FinOps Policy Engine for Kubernetes**
 
 > FinOps Shift Left. Enforce Cost Policies in Git.
-> Vigilo watches your Kubernetes costs like a kestrel watches the ground
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Status](https://img.shields.io/badge/Status-Early%20Development-orange)]()
 
 Vigilo is an open-source policy engine that brings **cost awarenes** into the Kubernetes development workflow.
+
+> Vigilo watches your Kubernetes costs like a kestrel watches the ground.
 
 Vigilo's first cost model produces a request-based monthly estimate from declared CPU, memory, replica count, and an explicit pricing catalog. It is a governance estimate, not a cloud invoice forecast.
 
