@@ -2,7 +2,8 @@
 
 **GitOps-Native FinOps Policy Engine for Kubernetes**
 
-> Shift FinOps Left. Enforce Cost Policies in Git.
+> FinOps Shift Left. Enforce Cost Policies in Git.
+> Vigilo watches your Kubernetes costs like a kestrel watches the ground
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Status](https://img.shields.io/badge/Status-Early%20Development-orange)]()
