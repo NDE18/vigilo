@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/crecerelle.png" alt="Crécerelle" width="400">
+</p>
+
 # Vigilo
 
 **GitOps-Native FinOps Policy Engine for Kubernetes**
@@ -7,10 +11,6 @@
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Status](https://img.shields.io/badge/Status-Early%20Development-orange)]()
-
-<p align="center">
-  <img src="assets/crecerelle.png" alt="Crécerelle" width="400">
-</p>
 
 Vigilo is an open-source policy engine that brings **cost awarenes** into the Kubernetes development workflow.
 
