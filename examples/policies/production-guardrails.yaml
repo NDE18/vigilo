@@ -1,5 +1,5 @@
+# yaml-language-server: $schema=none
 apiVersion: vigilo.io/v1alpha1
-terms: []
 kind: VigiloPolicy
 metadata:
   name: payment-production-guardrails
@@ -16,8 +16,8 @@ spec:
     requireLimits: false
 
     maxPerPod:
-      cpu: 2
-      memory: 4Gi
+      cpu: "2"
+      memory: "4Gi"
     
     replicas:
       max: 5

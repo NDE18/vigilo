@@ -1,4 +1,4 @@
-module github.com/nde18/virgilo
+module github.com/nde18/vigilo
 
 go 1.26.4
 
@@ -7,4 +7,6 @@ require github.com/spf13/cobra v1.10.2
 require (
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/spf13/pflag v1.0.9 // indirect
+	k8s.io/api v0.35.0 // indirect
+	k8s.io/apimachinery v0.35.0 // indirect
 )

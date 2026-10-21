@@ -7,7 +7,7 @@ spec:
   hoursPerMonth: 730
 
   cpuPerCoreHour: 0.041
-  memoryPerGBHour: 0.005
+  memoryPerGiBHour: 0.005
 
   metadata:
     provider: aws
