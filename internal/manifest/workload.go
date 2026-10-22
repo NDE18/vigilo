@@ -2,8 +2,8 @@ package manifest
 
 import "k8s.io/apimachinery/pkg/api/resource"
 
-// Worload describes the supported resource declarations of a workload.
-type Worload struct {
+// Workload describes the supported resource declarations of a workload.
+type Workload struct {
 	APIVersion        string      `json:"apiVersion"`
 	Kind              string      `json:"kind"`
 	Name              string      `json:"name"`
@@ -21,7 +21,7 @@ type Container struct {
 }
 
 // HasCompleteRequests reports whether every container declares both CPU and memory requests.
-func (w Worload) HasCompleteRequests() bool {
+func (w Workload) HasCompleteRequests() bool {
 	if len(w.Containers) == 0 {
 		return false
 	}

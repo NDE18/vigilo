@@ -17,9 +17,9 @@ import (
 //
 // Empty documents are skipped. Unsupported resources cause an error.
 // If any document fails, no partial result is returned.
-func Read(r io.Reader) ([]Worload, error) {
+func Read(r io.Reader) ([]Workload, error) {
 	decoder := k8syaml.NewYAMLOrJSONDecoder(r, 4096)
-	var workloads []Worload
+	var workloads []Workload
 
 	for document := 1; ; document++ {
 		var raw json.RawMessage
@@ -44,22 +44,22 @@ func Read(r io.Reader) ([]Worload, error) {
 	}
 
 	if len(workloads) == 0 {
-		return nil, errors.New("No workload manifests found")
+		return nil, errors.New("no workload manifests found")
 	}
 
 	return workloads, nil
 }
 
-func decodeDeployment(raw json.RawMessage) (Worload, error) {
+func decodeDeployment(raw json.RawMessage) (Workload, error) {
 	var typeMeta metav1.TypeMeta
 
 	if err := json.Unmarshal(raw, &typeMeta); err != nil {
-		return Worload{}, fmt.Errorf("Decode resource type: %w", err)
+		return Workload{}, fmt.Errorf("decode resource type: %w", err)
 	}
 
 	if typeMeta.APIVersion != "apps/v1" || typeMeta.Kind != "Deployment" {
-		return Worload{}, fmt.Errorf(
-			"Unsupported resource %q with apiVersion %q: only apps/v1 Deployment is supported",
+		return Workload{}, fmt.Errorf(
+			"unsupported resource %q with apiVersion %q: only apps/v1 Deployment is supported",
 			typeMeta.Kind,
 			typeMeta.APIVersion,
 		)
@@ -68,36 +68,36 @@ func decodeDeployment(raw json.RawMessage) (Worload, error) {
 	var deployment appsv1.Deployment
 
 	if err := json.Unmarshal(raw, &deployment); err != nil {
-		return Worload{}, fmt.Errorf("Decode Deployment: %w", err)
+		return Workload{}, fmt.Errorf("decode Deployment: %w", err)
 	}
 
 	return extractDeployment(&deployment)
 }
 
-func extractDeployment(deployment *appsv1.Deployment) (Worload, error) {
+func extractDeployment(deployment *appsv1.Deployment) (Workload, error) {
 	if deployment.Name == "" {
-		return Worload{}, errors.New("metadata.name is required")
+		return Workload{}, errors.New("metadata.name is required")
 	}
 
 	podsSpec := deployment.Spec.Template.Spec
 
 	if len(podsSpec.Containers) == 0 {
-		return Worload{}, fmt.Errorf(
-			"Deployment  %q: at least one container is required",
+		return Workload{}, fmt.Errorf(
+			"deployment  %q: at least one container is required",
 			deployment.Name,
 		)
 	}
 
 	if len(podsSpec.InitContainers) > 0 {
-		return Worload{}, fmt.Errorf(
-			"Deployment  %q: init containers are not supported yet",
+		return Workload{}, fmt.Errorf(
+			"deployment  %q: init containers are not supported yet",
 			deployment.Name,
 		)
 	}
 
 	if podsSpec.Resources != nil {
-		return Worload{}, fmt.Errorf(
-			"Deployment  %q: pod-level resources are not supported yet",
+		return Workload{}, fmt.Errorf(
+			"deployment  %q: pod-level resources are not supported yet",
 			deployment.Name,
 		)
 	}
@@ -110,8 +110,8 @@ func extractDeployment(deployment *appsv1.Deployment) (Worload, error) {
 	}
 
 	if replicas < 0 {
-		return Worload{}, fmt.Errorf(
-			"Deployment  %q: replicas must be non-negative",
+		return Workload{}, fmt.Errorf(
+			"deployment  %q: replicas must be non-negative",
 			deployment.Name,
 		)
 	}
@@ -120,8 +120,8 @@ func extractDeployment(deployment *appsv1.Deployment) (Worload, error) {
 
 	for _, c := range podsSpec.Containers {
 		if c.Name == "" {
-			return Worload{}, fmt.Errorf(
-				"Deployment  %q: container name is required",
+			return Workload{}, fmt.Errorf(
+				"deployment  %q: container name is required",
 				deployment.Name,
 			)
 		}
@@ -130,16 +130,16 @@ func extractDeployment(deployment *appsv1.Deployment) (Worload, error) {
 		memory := requestQuantity(c.Resources.Requests, corev1.ResourceMemory)
 
 		if cpu != nil && cpu.Sign() < 0 {
-			return Worload{}, fmt.Errorf(
-				"Deployment  %q: container %q: CPU request must be non-negative",
+			return Workload{}, fmt.Errorf(
+				"deployment  %q: container %q: CPU request must be non-negative",
 				deployment.Name,
 				c.Name,
 			)
 		}
 
 		if memory != nil && memory.Sign() < 0 {
-			return Worload{}, fmt.Errorf(
-				"Deployment  %q: container %q: memory request must be non-negative",
+			return Workload{}, fmt.Errorf(
+				"deployment  %q: container %q: memory request must be non-negative",
 				deployment.Name,
 				c.Name,
 			)
@@ -152,7 +152,7 @@ func extractDeployment(deployment *appsv1.Deployment) (Worload, error) {
 		})
 	}
 
-	return Worload{
+	return Workload{
 		APIVersion:        deployment.APIVersion,
 		Kind:              deployment.Kind,
 		Namespace:         deployment.Namespace,

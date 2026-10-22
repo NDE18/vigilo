@@ -314,7 +314,7 @@ func TestReadErrors(t *testing.T) {
 		{
 			name:    "Empty input",
 			input:   "",
-			message: "No workload manifests found",
+			message: "no workload manifests found",
 		},
 		{
 			name: "Unsupported resource kind",
@@ -322,7 +322,7 @@ func TestReadErrors(t *testing.T) {
 				"kind: Deployment",
 				"kind: StatefulSet",
 			),
-			message: "Unsupported resource",
+			message: "unsupported resource",
 		},
 		{
 			name: "Unsupported apiVersion",
@@ -330,7 +330,7 @@ func TestReadErrors(t *testing.T) {
 				"apiVersion: apps/v1",
 				"apiVersion: v1",
 			),
-			message: "Unsupported resource",
+			message: "unsupported resource",
 		},
 		{
 			name: "Negative replicas",
@@ -370,7 +370,7 @@ func TestReadErrors(t *testing.T) {
 				`memory: "512Mi"`,
 				`memory: "512XYZ"`,
 			),
-			message: "Decode Deployment",
+			message: "decode Deployment",
 		},
 		{
 			name:    "Invalid YAML",
