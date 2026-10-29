@@ -12,6 +12,6 @@ spec:
   metadata:
     provider: aws
     region: eu-west-3
-    effectiveDate: 2026-08-01
+    effectiveDate: 2026-10-01
     source: "Illustrative Vigilo reference rates"
     
